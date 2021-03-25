@@ -10,7 +10,12 @@ class Company(models.Model):
         HIRING = "Hiring"
 
     name = models.CharField(max_length=300, unique=True)
-    status = models.CharField(max_length=300, choices=CompanyStatus.choices, default=CompanyStatus.HIRING)
+    status = models.CharField(
+        max_length=300, choices=CompanyStatus.choices, default=CompanyStatus.HIRING
+    )
     last_update = models.DateTimeField(default=now, editable=True)
     application_link = URLField(blank=True)
     notes = models.CharField(max_length=300, blank=True)
+
+    def __str__(self):
+        return self.name
